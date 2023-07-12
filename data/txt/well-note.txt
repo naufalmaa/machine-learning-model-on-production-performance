@@ -1,0 +1,8 @@
+Note on Well Production Data
+NO 15/9-F-1 C - producing oil well -> Well-E1
+NO 15/9-F-11 (H) - appraisal, producing oil well -> Well-N1
+NO 15/9-F-12 (H) - producing oil well -> Well-W1
+NO 15/9-F-14 (H) - producing oil well -> Well-C1
+NO 15/9-F-15 D - infill, producing oil well -> Well-S1
+NO 15/9-F-4 (AH) - water injector -> Well-W2
+NO 15/9-F-5 (AH) - water injector -> Well-N2
