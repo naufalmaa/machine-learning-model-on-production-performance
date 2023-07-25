@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
-from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.feature_selection import SelectPercentile, f_regression
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import MinMaxScaler
+from xgboost import XGBRegressor
 from tpot.export_utils import set_param_recursive
 
 # NOTE: Make sure that the outcome column is labeled 'target' in the data file
@@ -12,10 +12,10 @@ features = tpot_data.drop('target', axis=1)
 training_features, testing_features, training_target, testing_target = \
             train_test_split(features, tpot_data['target'], random_state=123)
 
-# Average CV score on the training set was: -0.2577079604148504
+# Average CV score on the training set was: -0.3802997050609542
 exported_pipeline = make_pipeline(
-    MinMaxScaler(),
-    GradientBoostingRegressor(alpha=0.85, learning_rate=0.5, loss="huber", max_depth=1, max_features=0.05, min_samples_leaf=6, min_samples_split=5, n_estimators=100, subsample=0.7000000000000001)
+    SelectPercentile(score_func=f_regression, percentile=95),
+    XGBRegressor(learning_rate=0.5, max_depth=7, min_child_weight=14, n_estimators=100, n_jobs=1, objective="reg:squarederror", subsample=0.25, verbosity=0)
 )
 # Fix random state for all the steps in exported pipeline
 set_param_recursive(exported_pipeline.steps, 'random_state', 123)
