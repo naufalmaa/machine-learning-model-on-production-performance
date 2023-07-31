@@ -18,7 +18,7 @@ training_features, testing_features, training_target, testing_target = \
 exported_pipeline = make_pipeline(
     Nystroem(gamma=0.05, kernel="linear", n_components=4),
     PolynomialFeatures(degree=2, include_bias=False, interaction_only=False),
-    MaxAbsScaler(),
+    # MaxAbsScaler(),
     PCA(iterated_power=6, svd_solver="randomized"),
     LassoLarsCV(normalize=False)
 )
